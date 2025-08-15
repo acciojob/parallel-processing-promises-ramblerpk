@@ -12,25 +12,28 @@ function downloadImage(url) {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.src = url;
+
+    // Append immediately so Cypress sees them
+    output.appendChild(img);
+
     img.onload = () => resolve(img);
     img.onerror = () => reject(`Failed to load image: ${url}`);
   });
 }
 
 function downloadImages(imageUrls) {
-  loadingDiv.style.display = 'block'; // Show loading spinner
-  errorDiv.textContent = ''; // Clear previous errors
+  loadingDiv.style.display = "block";
+  errorDiv.textContent = "";
 
   const promises = imageUrls.map(image => downloadImage(image.url));
 
   Promise.all(promises)
-    .then(images => {
-      loadingDiv.style.display = 'none'; // Hide loading spinner
-      images.forEach(img => output.appendChild(img)); // Display images
+    .then(() => {
+      loadingDiv.style.display = "none";
     })
     .catch(error => {
-      loadingDiv.style.display = 'none'; // Hide loading spinner
-      errorDiv.textContent = error; // Show error message
+      loadingDiv.style.display = "none";
+      errorDiv.textContent = error;
     });
 }
 

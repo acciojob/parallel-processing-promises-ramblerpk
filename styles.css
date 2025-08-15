@@ -1,9 +1,21 @@
-/*  your css code here. If applicable */
-#loading {
-  font-size: 20px;
-  color: green;
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
 }
+
+#loading {
+  font-weight: bold;
+  color: blue;
+  margin-bottom: 10px;
+}
+
 #error {
   color: red;
-  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#output img {
+  margin: 5px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
 }
